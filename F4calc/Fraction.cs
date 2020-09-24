@@ -32,7 +32,7 @@ namespace F4calc
 			do {
 				r0 = r1;
 				r1 = F4Frac_a_c1(a, b, c1, c2, z1, z2, ++depth);
-			} while(Math.Abs(r0 - r1) > eps && depth <= depthLimit);
+			} while(Math.Abs(1d / r0 - 1d / r1) > eps && depth <= depthLimit);
 			if(depth > depthLimit || double.IsNaN(r1)) depth = -1;
 			return r1;
 		}
