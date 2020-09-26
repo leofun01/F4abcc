@@ -31,7 +31,10 @@ namespace F4calc
 				r0 = r1;
 				r1 = F4Series(a, b, c1, c2, z1, z2, ++n, n);
 			} while(Math.Abs(r0 - r1) > eps && n <= nLimit);
-			if(n > nLimit || double.IsNaN(r1)) n = -1;
+			if(n > nLimit
+				|| double.IsNaN(r1)
+				|| double.IsInfinity(r1)
+			) n = -1;
 			return r1;
 		}
 	}
