@@ -12,7 +12,7 @@ namespace F4calc
 	public partial class MainForm : Form
 	{
 		private const int a = 1, b = 2, c1 = 2, c2 = 2;
-		private int depth = 0, n = 0;
+		private int depthLimit = 0, nLimit = 0;
 		private double eps = 0d;
 		private double z1min = -1d, z1max = 1d;
 		private double z2min = -1d, z2max = 1d;
@@ -68,13 +68,13 @@ namespace F4calc
 				textBox_eps.BackColor = Color.LightPink;
 				success = false;
 			}
-			if(int.TryParse(comboBox_depth_limit.Text, out depth))
+			if(int.TryParse(comboBox_depth_limit.Text, out depthLimit))
 				comboBox_depth_limit.BackColor = DefaultComboBox_BackColor;
 			else {
 				comboBox_depth_limit.BackColor = Color.LightPink;
 				success = false;
 			}
-			if(int.TryParse(comboBox_length_limit.Text, out n))
+			if(int.TryParse(comboBox_length_limit.Text, out nLimit))
 				comboBox_length_limit.BackColor = DefaultComboBox_BackColor;
 			else {
 				comboBox_length_limit.BackColor = Color.LightPink;
@@ -93,6 +93,7 @@ namespace F4calc
 			textBox_list.Clear();
 			int pointsCount = (int)numericUpDown_pointsCount.Value;
 			grid.Rows.Add(pointsCount);
+			int depth = 0, n = 0;
 			double z1 = 0d, z2 = 0d;
 			for(int i = 0; i < pointsCount; ++i) {
 				if(pointsCount > 1) {
@@ -105,8 +106,8 @@ namespace F4calc
 				}
 				z1 = Math.Floor(z1 * 1e+12d + 0.5d) / 1e+12d;
 				z2 = Math.Floor(z2 * 1e+12d + 0.5d) / 1e+12d;
-				double frac = Fraction.F4Frac_a_c1(a, b, c1, c2, z1, z2, eps, 16, out depth);
-				double series = Series.F4Series(a, b, c1, c2, z1, z2, eps, 1 << (16 >> 1), out n);
+				double frac = Fraction.F4Frac_a_c1(a, b, c1, c2, z1, z2, eps, depthLimit, out depth);
+				double series = Series.F4Series(a, b, c1, c2, z1, z2, eps, nLimit, out n);
 				DataGridViewRow row = grid.Rows[i];
 				row.Cells[0].Value = z1;
 				row.Cells[1].Value = z2;
