@@ -24,9 +24,9 @@ namespace F4calc
 		}
 		public static double F4Frac_a_c1(
 			int a, int b, int c1, int c2,
-			double z1, double z2, double eps, out int depth)
+			double z1, double z2, double eps,
+			int depthLimit, out int depth)
 		{
-			const int depthLimit = 16;
 			depth = -1;
 			double r0, r1 = 0d;
 			do {

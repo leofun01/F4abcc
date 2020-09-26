@@ -22,9 +22,9 @@ namespace F4calc
 		}
 		public static double F4Series(
 			int a, int b, int c1, int c2,
-			double z1, double z2, double eps, out int n)
+			double z1, double z2, double eps,
+			int nLimit, out int n)
 		{
-			const int nLimit = 1 << (16 >> 1);
 			n = -1;
 			double r0, r1 = 0d;
 			do {
