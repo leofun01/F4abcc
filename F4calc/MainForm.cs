@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -12,15 +13,30 @@ namespace F4calc
 	public partial class MainForm : Form
 	{
 		private const int a = 1, b = 2, c1 = 2, c2 = 2;
-		private int depthLimit = 0, nLimit = 0;
-		private double eps = 0d;
-		private double z1min = -1d, z1max = 1d;
-		private double z2min = -1d, z2max = 1d;
+		private int depthLimit = 16, nLimit = 256;
+		private double eps = 1e-12d;
+		private double z1min = -0.5d, z1max = 0.5d;
+		private double z2min = -0.5d, z2max = 0.5d;
 		private Color DefaultComboBox_BackColor;
 		private Color DefaultTextBox_BackColor;
 		public MainForm()
 		{
 			InitializeComponent();
+			textBox_z1_min.Text = z1min.ToString();
+			textBox_z1_max.Text = z1max.ToString();
+			textBox_z2_min.Text = z2min.ToString();
+			textBox_z2_max.Text = z2max.ToString();
+			textBox_eps.Text = eps.ToString();
+			comboBox_depth_limit.Text = depthLimit.ToString();
+			comboBox_length_limit.Text = nLimit.ToString();
+			for(int depth = 0; depth <= 30; depth += 2)
+			{
+				comboBox_depth_limit.AutoCompleteCustomSource.Add(depth.ToString());
+				comboBox_depth_limit.Items.Add(depth);
+				int n = 1 << (depth >> 1);
+				comboBox_length_limit.AutoCompleteCustomSource.Add(n.ToString());
+				comboBox_length_limit.Items.Add(n);
+			}
 			DefaultComboBox_BackColor = comboBox_depth_limit.BackColor;
 			DefaultTextBox_BackColor = textBox_eps.BackColor;
 		}
@@ -84,6 +100,11 @@ namespace F4calc
 		}
 		private void DrawMap(VisualMap map)
 		{
+			visualMap_draw.SetParams(
+				z1min, z1max, z2min, z2max,
+				eps, depthLimit, nLimit
+			);
+			visualMap_draw.RePaint();
 		}
 		private void DataGridInit(DataGridView grid)
 		{

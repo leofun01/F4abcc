@@ -57,9 +57,6 @@
     <Compile Include="VisualMap.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VisualMap.Designer.cs">
-      <DependentUpon>VisualMap.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
