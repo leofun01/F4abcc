@@ -50,7 +50,7 @@ namespace F4calc
 			if(compare == 0) throw new Exception();
 			else if(compare < 0) {
 				if(b != 0 && c1 != a) {
-					parent.Left = new Node(-b * (c1 - a), ((c1 - 1) * c1), z1);
+					parent.Left = new Node(-b * (c1 - a), (c1 - 1) * c1, z1);
 					F4Frac_a_c1_tree(b + 1, a, c1 + 1, c2, z1, z2, depth - 1, parent.Left);
 				}
 				if(b != 0) {
@@ -64,7 +64,7 @@ namespace F4calc
 					F4Frac_a_c1_tree(b + 1, a, c2 + 1, c1, z2, z1, depth - 1, parent.Right);
 				}
 				if(b != 0 && c1 != a) {
-					parent.Left = new Node(-b * (c1 - a), ((c1 - 1) * c1), z1);
+					parent.Left = new Node(-b * (c1 - a), (c1 - 1) * c1, z1);
 					F4Frac_a_c1_tree(b + 1, a, c1 + 1, c2, z1, z2, depth - 1, parent.Left);
 				}
 			}

@@ -8,7 +8,7 @@ namespace F4calc
 			int a, int b, int c1, int c2,
 			double z1, double z2, int m, int n)
 		{
-			if(m < 0 || n < 0) return 1d;
+			if(m < 0 || n < 0) return 0d;
 			double sum = 0d, p1 = 1d, p2;
 			for(int i = 0; i <= m; ) {
 				p2 = p1;
@@ -41,7 +41,7 @@ namespace F4calc
 			int a, int b, int c1, int c2,
 			double z1, double z2, int m)
 		{
-			if(m < 0) return 1d;
+			if(m < 0) return 0d;
 			double sum = 0d, p1 = 1d, p2;
 			for(int i = 0; i <= m; ) {
 				p2 = p1;
