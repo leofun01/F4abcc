@@ -44,7 +44,7 @@ namespace F4calc
 			string z1, string z2, int depth, Node parent)
 		{
 			Console.WriteLine("{0,4} :  {1} / {2} * {3}", depth,
-				parent.CoefNumerator, parent.CoefDenominator, parent.VarName);
+				parent.Numerator, parent.Denominator, parent.VarName);
 			if(depth <= 0) return;
 			int compare = string.Compare(z1, z2);
 			if(compare == 0) throw new Exception();
@@ -71,8 +71,8 @@ namespace F4calc
 		}
 		public class Node
 		{
-			public int CoefNumerator { get; set; }
-			public int CoefDenominator { get; set; }
+			public int Numerator { get; set; }
+			public int Denominator { get; set; }
 			public string VarName { get; set; }
 			public Node Left { get; set; }
 			public Node Right { get; set; }
@@ -82,8 +82,8 @@ namespace F4calc
 				int gcd = GCD(
 					num < 0 ? -num : num,
 					den < 0 ? -den : den);
-				CoefNumerator = num / gcd;
-				CoefDenominator = den / gcd;
+				Numerator = num / gcd;
+				Denominator = den / gcd;
 				VarName = var;
 			}
 			public Node(int num, int den, string var, Node left, Node right) : this(num, den, var)
